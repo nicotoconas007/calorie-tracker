@@ -12,6 +12,7 @@ type ActivityListProps = {
 
 export default function ActivityList({activities, dispatch} : ActivityListProps) {
 
+    //Metodo para mostrar por nombre en lugar de por id 
     const categoryName = useMemo(() => 
         (category : Activity["category"]) => categories.map(cat => cat.id === category ? cat.name : "")
         ,[activities])
@@ -27,7 +28,7 @@ export default function ActivityList({activities, dispatch} : ActivityListProps)
         {isEmpty ? <p className="text-center my-5"> No hay actividades aún </p> :
 
         activities.map( activity => (
-            <div className="px-5 py-10 bg-white mt-5 flex justify-between" key={activity.id}>
+            <div className="px-5 py-10 bg-white mt-5 flex justify-between shadow" key={activity.id}>
                 <div className="space-y-2 relative">
                     <p className={`absolute -top-8 px-10 py-2 text-white uppercase font-bold ${activity.category === 1 ? "bg-cyan-300" : "bg-orange-400"}`}>
                         {categoryName(+activity.category)}
