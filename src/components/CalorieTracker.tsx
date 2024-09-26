@@ -1,12 +1,12 @@
 import { useMemo } from "react"
-import { Activity } from "../types"
 import CalorieDisplay from "./CalorieDisplay"
+import { useActivity } from "../hooks/useActivity"
 
-type CalorieTrackerProps = {
-    activities: Activity[]
-}
 
-export default function CalorieTracker({activities} : CalorieTrackerProps) {
+export default function CalorieTracker() {
+
+    const {state} = useActivity()
+    const {activities} = state
 
     const caloriesConsumed = useMemo(() => activities.reduce((total, activity) => activity.category === 1 ? total + activity.calories : total, 0), [activities])
     const caloriesBurned = useMemo(() => activities.reduce((total, activity) => activity.category === 2 ? total + activity.calories : total, 0), [activities])

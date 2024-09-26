@@ -1,16 +1,15 @@
 import { Activity } from "../types"
 import { categories } from "../data/categories"
-import { useMemo, Dispatch } from "react"
+import { useMemo } from "react"
 import { PencilSquareIcon, XCircleIcon} from "@heroicons/react/24/outline"
-import { ActivityActions } from "../reducers/activity-reducer"
+import { useActivity } from "../hooks/useActivity"
 
 
-type ActivityListProps = {
-    activities: Activity[],
-    dispatch: Dispatch<ActivityActions>
-}
+export default function ActivityList() {
 
-export default function ActivityList({activities, dispatch} : ActivityListProps) {
+    const {state, dispatch} = useActivity()
+
+    const {activities} = state
 
     //Metodo para mostrar por nombre en lugar de por id 
     const categoryName = useMemo(() => 
